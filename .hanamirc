@@ -1,0 +1,3 @@
+project=getwhois
+test=rspec
+template=erb
