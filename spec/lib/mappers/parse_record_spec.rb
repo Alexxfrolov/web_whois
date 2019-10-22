@@ -1,0 +1,82 @@
+# frozen_string_literal: true
+
+RSpec.describe Mappers::ParseRecord, :aggregate_failures do
+  def read_file(name)
+    File.read("spec/support/response_examples/domain.#{name}").gsub('\\r\\n', "\r\n")
+  end
+
+  it 'accepts empty string' do
+    parser = described_class.new('')
+    expect(parser.domain).to be_nil
+  end
+
+  it 'parses .news' do
+    parser = described_class.new(read_file('news'))
+    expect(parser.domain).to eq('xco.news')
+    expect(parser.domain_id).to eq('f9b7895db33c453c8e372fc0ebd9cca5-DONUTS')
+    expect(parser.status).to eq('clientTransferProhibited https://icann.org/epp#clientTransferProhibited')
+    expect(parser.created_on).to eq('2017-04-11T15:03:23Z')
+    expect(parser.updated_on).to eq('2019-04-14T22:39:10Z')
+    expect(parser.expires_on).to eq('2020-04-11T15:03:23Z')
+    expect(parser.registrar).to eq(
+      id: nil,
+      name: 'Regional Network Information Center, JSC dba RU-CENTER',
+      organization: 'Regional Network Information Center, JSC dba RU-CENTER',
+      url: 'https://www.nic.ru/en/'
+    )
+    expect(parser.registrant_contacts).to include(
+      id: 'REDACTED FOR PRIVACY',
+      type: nil,
+      name: 'REDACTED FOR PRIVACY',
+      organization: 'Privacy protection service - whoisproxy.ru',
+      address: nil,
+      city: 'REDACTED FOR PRIVACY Registrant State/Province: Moscow',
+      zip: 'REDACTED FOR PRIVACY',
+      state: nil,
+      country: 'RU',
+      country_code: nil,
+      phone: 'REDACTED FOR PRIVACY',
+      fax: 'REDACTED FOR PRIVACY',
+      email: 'Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name.',
+      url: nil,
+      created_on: nil,
+      updated_on: nil
+    )
+    expect(parser.admin_contacts).to include(
+      id: 'REDACTED FOR PRIVACY',
+      type: nil,
+      name: 'REDACTED FOR PRIVACY',
+      organization: 'REDACTED FOR PRIVACY',
+      address: nil,
+      city: 'REDACTED FOR PRIVACY Admin State/Province: REDACTED FOR PRIVACY',
+      zip: 'REDACTED FOR PRIVACY',
+      state: nil,
+      country: 'REDACTED FOR PRIVACY',
+      country_code: nil,
+      phone: 'REDACTED FOR PRIVACY',
+      fax: 'REDACTED FOR PRIVACY',
+      email: 'Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name.',
+      url: nil,
+      created_on: nil,
+      updated_on: nil
+    )
+    expect(parser.technical_contacts).to include(
+      id: 'REDACTED FOR PRIVACY',
+      type: nil,
+      name: 'REDACTED FOR PRIVACY',
+      organization: 'REDACTED FOR PRIVACY',
+      address: nil,
+      city: 'REDACTED FOR PRIVACY Tech State/Province: REDACTED FOR PRIVACY',
+      zip: 'REDACTED FOR PRIVACY',
+      state: nil,
+      country: 'REDACTED FOR PRIVACY',
+      country_code: nil,
+      phone: 'REDACTED FOR PRIVACY',
+      fax: 'REDACTED FOR PRIVACY',
+      email: 'Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name.',
+      url: nil,
+      created_on: nil,
+      updated_on: nil
+    )
+  end
+end

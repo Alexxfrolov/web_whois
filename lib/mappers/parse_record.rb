@@ -3,8 +3,9 @@
 module Mappers
   # base class with data structure
   class ParseRecord
-    def initialize(parser)
-      raw = parser.part.body.to_s
+    attr_reader :record
+
+    def initialize(raw)
       @record = {}
 
       raw.scan(/^[a-zA-Z -]+:/).each_cons(2) do |elements|
@@ -16,31 +17,6 @@ module Mappers
 
         @record[key] = value&.squish
       end
-    end
-
-    def call
-      {
-        'creation date' => val_by_regexp(/create|creation/),
-        'updated date' => val_by_regexp(/update|modif/),
-        'registry expiry date' => val_by_regexp(/paid|expire|expiration|renewal/),
-        'registrar' => val_by_regexp(/registrar/),
-        'registrant organisation' => val_by_regexp(/org/),
-        'registrant street' => [val_by_regexp(/street/)],
-        'registrant state/province' => val_by_regexp(/state/),
-        'registrant postal code' => val_by_regexp(/post/),
-        'registrant country' => val_by_regexp(/country/),
-        'registrant email' => val_by_regexp(/email/),
-        'registrant phone' => val_by_regexp(/phone/),
-        'registrant fax' => val_by_regexp(/fax/),
-        'admin organization' => val_by_regexp(/org/),
-        'admin street' => val_by_regexp(/street/),
-        'admin state/province' => val_by_regexp(/state/),
-        'admin postal code' => val_by_regexp(/post/),
-        'admin country' => val_by_regexp(/country/),
-        'admin email' => val_by_regexp(/email|admin-contact/),
-        'admin phone' => val_by_regexp(/phone/),
-        'admin fax' => val_by_regexp(/fax/)
-      }
     end
 
     def disclaimer
@@ -76,7 +52,7 @@ module Mappers
     end
 
     def expires_on
-      val_by_regexp(/expiry/)
+      val_by_regexp(/expiry|expiration/)
     end
 
     def registrar

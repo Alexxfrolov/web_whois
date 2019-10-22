@@ -9,7 +9,7 @@ module Mappers
   class WhoisRecord
     def initialize(parser)
       @parser = parser
-      @record_parser = ParseRecord.new(parser)
+      @record_parser = ParseRecord.new(parser.part.body.to_s)
     end
 
     def call
@@ -18,8 +18,8 @@ module Mappers
         domain: domain,
         domain_id: domain_id,
         status: status,
-        available?: available?,
-        registered?: registered?,
+        available: available?,
+        registered: registered?,
         created_on: created_on,
         updated_on: updated_on,
         expires_on: expires_on,
