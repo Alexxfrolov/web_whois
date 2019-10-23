@@ -3,6 +3,9 @@
 # Configure your routes here
 # See: https://guides.hanamirb.org/routing/overview
 #
-# Example:
-# get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
+
+json_endpoint = ->(env) { Api::Controllers::V1::Whois.new.call(query: env["router.params"][:request]) }
+
 get "/", to: "home#index"
+get "/:request", to: "home#show"
+get "/:request/json", to: json_endpoint

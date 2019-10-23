@@ -13,6 +13,8 @@ gem "rake"
 # gem 'whois', '~> 5.0'
 gem "whois-parser"
 
+# classify user-agent
+gem "device_detector"
 # gem 'mysql2'
 
 # Monitoring and logging

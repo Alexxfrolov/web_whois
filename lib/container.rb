@@ -3,6 +3,7 @@
 require "dry-container"
 require "dry-auto_inject"
 require "whois"
+require "device_detector"
 
 # require_relative 'services/query_reporter'
 # require_relative 'mappers/response'
