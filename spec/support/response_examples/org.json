@@ -1,0 +1,34 @@
+{
+  "disclaimer": null,
+  "domain": "ruby-doc.org",
+  "domain_id": "D90393870-LROR",
+  "status": "registered",
+  "available": false,
+  "registered": true,
+  "created_on": "2002-09-18 15:55:45 UTC",
+  "updated_on": "2019-08-19 12:40:56 UTC",
+  "expires_on": "2020-09-18 15:55:49 UTC",
+  "registrar": {},
+  "registrant_contacts": [
+    {
+      "id": null,
+      "type": null,
+      "name": null,
+      "organization": "Registrant State/Province: AZ",
+      "address": null,
+      "city": null,
+      "zip": null,
+      "state": null,
+      "country": "US",
+      "country_code": null,
+      "phone": null,
+      "fax": null,
+      "email": null,
+      "url": null,
+      "created_on": null,
+      "updated_on": null
+    }
+  ],
+  "admin_contacts": [],
+  "technical_contacts": []
+}

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'hanami/helpers'
-require 'hanami/assets'
+require "hanami/helpers"
+require "hanami/assets"
 
 module Api
   class Application < Hanami::Application
@@ -21,7 +21,7 @@ module Api
       # When you add new directories, remember to add them here.
       #
       load_paths << [
-        'controllers'
+        "controllers"
       ]
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
@@ -37,7 +37,7 @@ module Api
       # Routes definitions for this application
       # See: http://www.rubydoc.info/gems/hanami-router#Usage
       #
-      routes 'config/routes'
+      routes "config/routes"
 
       # Configure Rack middleware for this application
       #
@@ -86,7 +86,7 @@ module Api
       #   * https://msdn.microsoft.com/en-us/library/gg622941%28v=vs.85%29.aspx
       #   * https://blogs.msdn.microsoft.com/ie/2008/09/02/ie8-security-part-vi-beta-2-update
       #
-      security.x_content_type_options 'nosniff'
+      security.x_content_type_options "nosniff"
 
       # X-XSS-Protection is a HTTP header to determine the behavior of the
       # browser in case an XSS attack is detected.
@@ -96,7 +96,7 @@ module Api
       #   * https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)
       #   * https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#X-XSS-Protection
       #
-      security.x_xss_protection '1; mode=block'
+      security.x_xss_protection "1; mode=block"
 
       # Content-Security-Policy (CSP) is a HTTP header supported by modern
       # browsers. It determines trusted sources of execution for dynamic

@@ -6,7 +6,7 @@ module Api
       # base controller get information by request
       class Whois
         include Api::Action
-        include Import['services.query_reporter']
+        include Import["services.query_reporter"]
 
         accept :json
 

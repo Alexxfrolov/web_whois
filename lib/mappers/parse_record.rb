@@ -3,20 +3,11 @@
 module Mappers
   # base class with data structure
   class ParseRecord
-    attr_reader :record
+    attr_reader :record, :raw_text
 
     def initialize(raw)
-      @record = {}
-
-      raw.scan(/^[a-zA-Z -]+:/).each_cons(2) do |elements|
-        key = elements[0]&.squish&.downcase
-        value =
-          if elements[1] then raw[/#{elements[0]}(.*?)#{elements[1]}/m, 1]
-          else raw[/#{elements[1]}(.*?)(.*)/m, 2]
-          end
-
-        @record[key] = value&.squish
-      end
+      @raw_text = raw.dup.to_s.force_encoding("utf-8")
+      set_record!
     end
 
     def disclaimer
@@ -32,32 +23,32 @@ module Mappers
     end
 
     def status
-      val_by_regexp(/status/)
+      available? ? "available" : "registered"
     end
 
     def available?
-      false
+      @record["available"] || false
     end
 
     def registered?
-      nil
+      !available?
     end
 
     def created_on
-      val_by_regexp(/creation date|created/)
+      convert_date_to_utc val_by_regexp(/creation date|created/)
     end
 
     def updated_on
-      val_by_regexp(/updated|modified/)
+      convert_date_to_utc val_by_regexp(/updated|modified/) || @raw_text[/updated on(.*?)(.*)/m, 2]&.strip
     end
 
     def expires_on
-      val_by_regexp(/expiry|expiration/)
+      convert_date_to_utc val_by_regexp(/expiry|expiration|paid-till/)
     end
 
     def registrar
       {
-        id: val_by_regexp(/registar iana id/),
+        id: val_by_regexp(/regist(.*?) iana id/),
         name: val_by_regexp(/registrar:/),
         organization: val_by_regexp(/registrar:/),
         url: val_by_regexp(/registrar url/)
@@ -103,7 +94,7 @@ module Mappers
           phone: val_by_regexp(/admin phone/),
           fax: val_by_regexp(/admin fax/),
           email: val_by_regexp(/admin email/),
-          url: val_by_regexp(/admin url/),
+          url: val_by_regexp(/admin url|admin-contact/),
           created_on: val_by_regexp(/admin create/),
           updated_on: val_by_regexp(/admin update/)
         }
@@ -139,9 +130,30 @@ module Mappers
 
     private
 
+    def set_record!
+      @record ||= {}
+
+      @raw_text.scan(/^[a-zA-Z -]+:/).each_cons(2) do |elements|
+        key = elements[0]&.squish&.downcase
+        value =
+          if elements[1] then @raw_text[/#{elements[0]}(.*?)#{elements[1]}/m, 1]
+          else @raw_text[/#{elements[1]}(.*?)(.*)/m, 2]
+          end
+        @record[key] = value&.squish
+      end
+
+      @record["available"] = true if @raw_text.match?(/domain not found|no entries found/i)
+    end
+
     def val_by_regexp(regexp)
       searched_key = @record.keys.find { |key| key.to_s.match(regexp) }
       @record[searched_key]
+    end
+
+    def convert_date_to_utc(date)
+      Time.iso8601(date).to_s
+    rescue ArgumentError
+      nil
     end
   end
 end

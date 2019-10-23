@@ -3,8 +3,8 @@
 module Services
   # used to get report from whois service
   class QueryReporter
-    include Import['whois']
-    include Import['mappers.wrap_response']
+    include Import["whois"]
+    include Import["mappers.wrap_response"]
 
     def call(query)
       do_response(query)
