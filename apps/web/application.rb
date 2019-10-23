@@ -125,7 +125,7 @@ module Web
         # See: https://guides.hanamirb.org/assets/compressors
         #
         # In order to skip JavaScript compression comment the following line
-        javascript_compressor :builtin
+        javascript_compressor :uglifier
 
         # Stylesheet compressor
         #
@@ -288,7 +288,7 @@ module Web
         # Don't compile static assets in production mode (eg. Sass, ES6)
         #
         # See: http://www.rubydoc.info/gems/hanami-assets#Configuration
-        compile false
+        compile true
 
         # Use fingerprint file name for asset paths
         #
