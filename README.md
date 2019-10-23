@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Alexxfrolov/web_whois.svg?branch=master)](https://travis-ci.org/Alexxfrolov/web_whois)
 # Getwhois
 
 Welcome to your new Hanami project!
