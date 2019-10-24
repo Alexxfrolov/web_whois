@@ -61,7 +61,7 @@ module Mappers
           id: val_by_regexp(/registrant id/),
           type: val_by_regexp(/registrant type/),
           name: val_by_regexp(/registrant name/),
-          organization: val_by_regexp(/registrant org/),
+          organization: val_by_regexp(/registrant org/) || val_by_regexp(/org/),
           address: val_by_regexp(/registrant address/),
           city: val_by_regexp(/registrant city/),
           zip: val_by_regexp(/registrant post(.*)(code|zip)/),
