@@ -187,7 +187,7 @@ var Tabs = function Tabs() {
 
         if (isSelected) {
           return;
-        }z
+        }
 
         self.changeTab(tab);
         self.changeTablist(tab);

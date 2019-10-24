@@ -5,8 +5,8 @@ module Web
         include Web::View
 
         def search_form
-          form_for :request, "#", method: :get, class: "search-form" do
-            text_field :request, class: "search-form__input", placeholder: "For example: google.com, 8.8.8.8"
+          form_for :show, "/", method: :get, class: "search-form" do
+            text_field :request, name: :request, class: "search-form__input", placeholder: "For example: google.com, 8.8.8.8"
 
             submit "Get WHOIS now", class: "search-form__button"
           end

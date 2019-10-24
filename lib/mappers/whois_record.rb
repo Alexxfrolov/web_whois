@@ -75,17 +75,17 @@ module Mappers
     end
 
     def registrant_contacts
-      parser_respond_to?(:registrant_contact) ? @parser.registrant_contacts.map(&:to_h) :
+      parser_respond_to?(:registrant_contact) && @parser.registrant_contacts.present ? @parser.registrant_contacts.map(&:to_h) :
         @record_parser.registrant_contacts
     end
 
     def admin_contacts
-      parser_respond_to?(:admin_contacts) ? @parser.admin_contacts.map(&:to_h) :
+      parser_respond_to?(:admin_contacts) && @parser.admin_contacts.present? ? @parser.admin_contacts.map(&:to_h) :
         @record_parser.admin_contacts
     end
 
     def technical_contacts
-      parser_respond_to?(:technical_contacts) ? @parser.technical_contacts.map(&:to_h) :
+      parser_respond_to?(:technical_contacts) && @parser.technical_contacts.present? ? @parser.technical_contacts.map(&:to_h) :
         @record_parser.technical_contacts
     end
 

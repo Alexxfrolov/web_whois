@@ -68,9 +68,9 @@ module Mappers
           state: val_by_regexp(/registrant state/),
           country: val_by_regexp(/registrant country/),
           country_code: val_by_regexp(/registrant country_code/),
-          phone: val_by_regexp(/registrant phone/),
-          fax: val_by_regexp(/registrant fax/),
-          email: val_by_regexp(/registrant email/),
+          phone: val_by_regexp(/registrant phone/) || val_by_regexp(/phone/),
+          fax: val_by_regexp(/registrant fax/) || val_by_regexp(/fax/),
+          email: val_by_regexp(/registrant email/) || val_by_regexp(/email/),
           url: val_by_regexp(/registrant url/),
           created_on: val_by_regexp(/registrant create/),
           updated_on: val_by_regexp(/registrant update/)
@@ -91,9 +91,9 @@ module Mappers
           state: val_by_regexp(/admin state/),
           country: val_by_regexp(/admin country/),
           country_code: val_by_regexp(/admin country_code/),
-          phone: val_by_regexp(/admin phone/),
-          fax: val_by_regexp(/admin fax/),
-          email: val_by_regexp(/admin email/),
+          phone: val_by_regexp(/admin phone/) || val_by_regexp(/phone/),
+          fax: val_by_regexp(/admin fax/) || val_by_regexp(/fax/),
+          email: val_by_regexp(/admin email/) || val_by_regexp(/email/),
           url: val_by_regexp(/admin url|admin-contact/),
           created_on: val_by_regexp(/admin create/),
           updated_on: val_by_regexp(/admin update/)
@@ -114,9 +114,9 @@ module Mappers
           state: val_by_regexp(/tech state/),
           country: val_by_regexp(/tech country/),
           country_code: val_by_regexp(/tech country_code/),
-          phone: val_by_regexp(/tech phone/),
-          fax: val_by_regexp(/tech fax/),
-          email: val_by_regexp(/tech email/),
+          phone: val_by_regexp(/tech phone/) || val_by_regexp(/phone/),
+          fax: val_by_regexp(/tech fax/) || val_by_regexp(/fax/),
+          email: val_by_regexp(/tech email/) || val_by_regexp(/email/),
           url: val_by_regexp(/tech url/),
           created_on: val_by_regexp(/tech create/),
           updated_on: val_by_regexp(/tech update/)
@@ -133,7 +133,7 @@ module Mappers
     def set_record!
       @record ||= {}
 
-      @raw_text.scan(/^[a-zA-Z -]+:/).each_cons(2) do |elements|
+      @raw_text.scan(/^[a-zA-Z -\/\\]+:/).each_cons(2) do |elements|
         key = elements[0]&.squish&.downcase
         value =
           if elements[1] then @raw_text[/#{elements[0]}(.*?)#{elements[1]}/m, 1]
