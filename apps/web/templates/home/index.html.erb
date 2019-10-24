@@ -5,10 +5,7 @@
   <p class="text">Powerful way to search domain name registration records. Real providing date, easy integration and formatting record as you want.</p>
 </div>
 <div class="page__form">
-  <form action="/" method="GET" class="search-form">
-    <input class="search-form__input" name="request" type="search" placeholder="For example: google.com, 8.8.8.8">
-    <button class="search-form__button" type="submit">Get WHOIS now</button>
-  </form>
+  <%= search_form %>
 </div>
 <a class="link link--skeep link--contained" href="#example"><img class="link--skeep__icon" src="/images/arrow_down.svg" alt="move json example">Learn more</a>
 <div class="page__advantages">
@@ -37,8 +34,7 @@
   <div class="markdown">
     <h2 class="heading heading--level-2 heading--align-center markdown__title">JSON API Documentation</h2>
     <div class="markdown__container">
-      <pre class="markdown__json">curl https://getwhois.io/google.com/json</pre>
-      <pre class="markdown__json"><%= json_example %></pre>
+      <%= render partial: 'json_example' %>
     </div>
   </div>
 </div>
