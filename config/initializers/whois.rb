@@ -3,6 +3,9 @@
 # Define a server for the .it extension
 Whois::Server.define :tld, "it", "whois.nic.it"
 
+# Define a server for the .gr extension
+Whois::Server.define :tld, "gr", "whois.iana.org"
+
 # Define a new server for an range of IPv4 addresses
 Whois::Server.define :ipv4, "61.192.0.0/12", "whois.nic.ad.jp"
 
