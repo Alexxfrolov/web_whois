@@ -61,7 +61,7 @@ module Mappers
           id: val_by_regexp(/registrant id/),
           type: val_by_regexp(/registrant type/),
           name: val_by_regexp(/registrant name/),
-          organization: val_by_regexp(/registrant org/) || val_by_regexp(/org/),
+          organization: val_by_regexp(/registrant org/) || val_by_regexp(/org|registrant/),
           address: val_by_regexp(/registrant address/),
           city: val_by_regexp(/registrant city/),
           zip: val_by_regexp(/registrant post(.*)(code|zip)/),
@@ -107,7 +107,7 @@ module Mappers
           id: val_by_regexp(/tech id/),
           type: val_by_regexp(/tech type/),
           name: val_by_regexp(/tech name/),
-          organization: val_by_regexp(/tech org/),
+          organization: val_by_regexp(/tech org/) || val_by_regexp(/org|registrant/),
           address: val_by_regexp(/tech address/),
           city: val_by_regexp(/tech city/),
           zip: val_by_regexp(/tech post(.*)(code|zip)/),
@@ -125,23 +125,32 @@ module Mappers
     end
 
     def nameservers
-      []
+      val_by_regexp(/server/).split(/server|\n/).select { |i| i.match?(/ns\d\./) }.map do |item|
+        item.gsub!(/: /, "")
+        name, ip4, ip6 = item.squish.split(" ")
+        {
+          name: name.chomp(".").chomp(","),
+          ipv4: ip4.to_s.chomp(".").chomp(","),
+          ipv6: ip6.to_s.chomp(".").chomp(",")
+        }
+      end
     end
 
     private
 
     def set_record!
       @record ||= {}
-
-      @raw_text.scan(/^[a-zA-Z -\/\\]+:/).reject { |i| i.match?(/http/) }.each_cons(2) do |elements|
-        key = elements[0]&.squish&.downcase
-        value =
-          if elements[1] then @raw_text[/#{elements[0]}(.*?)#{elements[1]}/m, 1]
-          else @raw_text[/#{elements[1]}(.*?)(.*)/m, 2]
-          end
+      keys = @raw_text.scan(/^[a-zA-Z -\/\\]+:/).reject { |i| i.match?(/http/) }
+      keys.each_cons(2) do |first, second|
+        key = first&.squish&.downcase
+        value = @raw_text[/#{first}(.*?)#{second}/m, 1]
         @record[key] = value&.squish
       end
 
+      last_key = keys.last&.squish&.downcase
+      last_val = @raw_text[/#{keys.last}(.*?)(.*)/m, 2]
+
+      @record[last_key] = last_val
       @record["available"] = true if @raw_text.match?(/domain not found|no entries found/i)
     end
 
