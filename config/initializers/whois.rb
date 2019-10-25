@@ -16,7 +16,7 @@ Whois::Server.define :ipv6, "2001:2000::/19", "whois.ripe.net"
 Whois::Server.define :tld, "test", nil,
                      adapter: Whois::Server::Adapters::None
 
-# Define a new server with a custom adapter and options
-Whois::Server.define :tld, "ar", nil,
-                     adapter: Whois::Server::Adapters::Web,
-                     url: "http://www.nic.ar/"
+# # Define a new server with a custom adapter and options
+# Whois::Server.define :tld, "ar", nil,
+#                      adapter: Whois::Server::Adapters::Web,
+#                      url: "http://www.nic.ar/"

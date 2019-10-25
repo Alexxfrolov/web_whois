@@ -133,7 +133,7 @@ module Mappers
     def set_record!
       @record ||= {}
 
-      @raw_text.scan(/^[a-zA-Z -\/\\]+:/).each_cons(2) do |elements|
+      @raw_text.scan(/^[a-zA-Z -\/\\]+:/).reject { |i| i.match?(/http/) }.each_cons(2) do |elements|
         key = elements[0]&.squish&.downcase
         value =
           if elements[1] then @raw_text[/#{elements[0]}(.*?)#{elements[1]}/m, 1]

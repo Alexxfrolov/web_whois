@@ -22,8 +22,8 @@ module Services
       [400, wrap_response.call(nil)]
     rescue Whois::ConnectionError
       [503, wrap_response.call(nil)]
-    rescue StandardError
-      [500, wrap_response.call(nil)]
+    # rescue StandardError
+    #   [500, wrap_response.call(nil)]
     end
   end
 end

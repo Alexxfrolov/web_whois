@@ -95,7 +95,10 @@ module Mappers
     end
 
     def parser_respond_to?(method_name)
-      @parser._properties[method_name] == :supported
+      @parser._properties[method_name] == :supported && @parser.public_send(method_name).present?
+
+    rescue Whois::ParserError
+      false
     end
 
     def get_value(method)
