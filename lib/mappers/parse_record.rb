@@ -151,7 +151,7 @@ module Mappers
       last_val = @raw_text[/#{keys.last}(.*?)(.*)/m, 2]
 
       @record[last_key] = last_val unless @record.has_key?(last_key)
-      @record["available"] = true if @raw_text.match?(/domain not found|no entries found/i)
+      @record["available"] = true if @raw_text.match?(/domain not found|no entries found|not found|no match /i)
     end
 
     def val_by_regexp(regexp)
