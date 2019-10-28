@@ -35,7 +35,7 @@ module Mappers
     end
 
     def created_on
-      convert_date_to_utc val_by_regexp(/creation date|created/)
+      convert_date_to_utc val_by_regexp(/creation date|created|regdate/)
     end
 
     def updated_on
@@ -62,16 +62,16 @@ module Mappers
           type: val_by_regexp(/registrant type/),
           name: val_by_regexp(/registrant name/),
           organization: val_by_regexp(/registrant org/) || val_by_regexp(/org|registrant/),
-          address: val_by_regexp(/registrant address/),
-          city: val_by_regexp(/registrant city/),
-          zip: val_by_regexp(/registrant post(.*)(code|zip)/),
-          state: val_by_regexp(/registrant state/),
-          country: val_by_regexp(/registrant country/),
-          country_code: val_by_regexp(/registrant country_code/),
+          address: val_by_regexp(/registrant address/) || val_by_regexp(/address/),
+          city: val_by_regexp(/registrant city/) || val_by_regexp(/city/),
+          zip: val_by_regexp(/registrant post(.*)(code|zip)|postalcode/),
+          state: val_by_regexp(/registrant state/) || val_by_regexp(/state/),
+          country: val_by_regexp(/registrant country/) || val_by_regexp(/country/),
+          country_code: val_by_regexp(/registrant country_code/) || val_by_regexp(/country_code|countrycode/),
           phone: val_by_regexp(/registrant phone/) || val_by_regexp(/phone/),
           fax: val_by_regexp(/registrant fax/) || val_by_regexp(/fax/),
           email: val_by_regexp(/registrant email/) || val_by_regexp(/email/),
-          url: val_by_regexp(/registrant url/),
+          url: val_by_regexp(/registrant url/) || val_by_regexp(/ref/),
           created_on: val_by_regexp(/registrant create/),
           updated_on: val_by_regexp(/registrant update/)
         }
@@ -108,12 +108,12 @@ module Mappers
           type: val_by_regexp(/tech type/),
           name: val_by_regexp(/tech name/),
           organization: val_by_regexp(/tech org/) || val_by_regexp(/org|registrant/),
-          address: val_by_regexp(/tech address/),
-          city: val_by_regexp(/tech city/),
-          zip: val_by_regexp(/tech post(.*)(code|zip)/),
-          state: val_by_regexp(/tech state/),
-          country: val_by_regexp(/tech country/),
-          country_code: val_by_regexp(/tech country_code/),
+          address: val_by_regexp(/tech address/) || val_by_regexp(/address/),
+          city: val_by_regexp(/tech city/) || val_by_regexp(/city/),
+          zip: val_by_regexp(/tech post(.*)(code|zip)|postalcode/),
+          state: val_by_regexp(/tech state/) || val_by_regexp(/state/),
+          country: val_by_regexp(/tech country/) || val_by_regexp(/country/),
+          country_code: val_by_regexp(/tech country_code/) || val_by_regexp(/country_code|countrycode/),
           phone: val_by_regexp(/tech phone/) || val_by_regexp(/phone/),
           fax: val_by_regexp(/tech fax/) || val_by_regexp(/fax/),
           email: val_by_regexp(/tech email/) || val_by_regexp(/email/),
@@ -125,7 +125,7 @@ module Mappers
     end
 
     def nameservers
-      val_by_regexp(/server/).split(/server|\n/).select { |i| i.match?(/ns\d\./) }.map do |item|
+      Array(val_by_regexp(/server/)&.split(/server|\n/)).select { |i| i.match?(/ns\d\./) }.map do |item|
         item.gsub!(/: /, "")
         name, ip4, ip6 = item.squish.split(" ")
         {
@@ -144,13 +144,13 @@ module Mappers
       keys.each_cons(2) do |first, second|
         key = first&.squish&.downcase
         value = @raw_text[/#{first}(.*?)#{second}/m, 1]
-        @record[key] = value&.squish
+        @record[key] = value&.squish unless @record.has_key?(key)
       end
 
       last_key = keys.last&.squish&.downcase
       last_val = @raw_text[/#{keys.last}(.*?)(.*)/m, 2]
 
-      @record[last_key] = last_val
+      @record[last_key] = last_val unless @record.has_key?(last_key)
       @record["available"] = true if @raw_text.match?(/domain not found|no entries found/i)
     end
 
@@ -160,7 +160,13 @@ module Mappers
     end
 
     def convert_date_to_utc(date)
-      Time.iso8601(date).to_s
+      return nil unless date
+
+      if date.match?(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/)
+        date
+      else
+        Time.iso8601(date).to_s
+      end
     rescue ArgumentError
       nil
     end
