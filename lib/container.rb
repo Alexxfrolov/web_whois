@@ -13,7 +13,7 @@ require "device_detector"
 class Container
   extend Dry::Container::Mixin
 
-  register("whois") { Whois::Client.new }
+  register("whois") { Whois::Client.new(timeout: 10) }
 
   namespace("services") do
     register("query_reporter") { Services::QueryReporter.new }

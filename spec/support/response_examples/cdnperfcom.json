@@ -1,0 +1,87 @@
+{
+    "domain_id": "1788170951_DOMAIN_COM-VRSN",
+    "status": "registered",
+    "available?": false,
+    "registered?": true,
+    "created_on": "2013-03-22T17:36:38.000Z",
+    "updated_on": "2018-12-08T11:26:01.000Z",
+    "expires_on": "2020-03-22T17:36:38.000Z",
+    "registrar": {
+        "id": "1068",
+        "name": "NameCheap, Inc.",
+        "organization": null,
+        "url": "http://www.namecheap.com"
+    },
+    "registrant_contacts": [
+        {
+            "id": null,
+            "type": 1,
+            "name": "WhoisGuard Protected",
+            "organization": "WhoisGuard, Inc.",
+            "address": "P.O. Box 0823-03411",
+            "city": "Panama",
+            "zip": "",
+            "state": "Panama",
+            "country": null,
+            "country_code": "PA",
+            "phone": "+507.8365503",
+            "fax": "+51.17057182",
+            "email": "0bbf61783f8f4532aeaade71e21fc49a.protect@whoisguard.com",
+            "url": null,
+            "created_on": null,
+            "updated_on": null
+        }
+    ],
+    "admin_contacts": [
+        {
+            "id": null,
+            "type": 2,
+            "name": "WhoisGuard Protected",
+            "organization": "WhoisGuard, Inc.",
+            "address": "P.O. Box 0823-03411",
+            "city": "Panama",
+            "zip": "",
+            "state": "Panama",
+            "country": null,
+            "country_code": "PA",
+            "phone": "+507.8365503",
+            "fax": "+51.17057182",
+            "email": "0bbf61783f8f4532aeaade71e21fc49a.protect@whoisguard.com",
+            "url": null,
+            "created_on": null,
+            "updated_on": null
+        }
+    ],
+    "technical_contacts": [
+        {
+            "id": null,
+            "type": 3,
+            "name": "WhoisGuard Protected",
+            "organization": "WhoisGuard, Inc.",
+            "address": "P.O. Box 0823-03411",
+            "city": "Panama",
+            "zip": "",
+            "state": "Panama",
+            "country": null,
+            "country_code": "PA",
+            "phone": "+507.8365503",
+            "fax": "+51.17057182",
+            "email": "0bbf61783f8f4532aeaade71e21fc49a.protect@whoisguard.com",
+            "url": null,
+            "created_on": null,
+            "updated_on": null
+        }
+    ],
+    "nameservers": [
+        {
+            "name": "amber.ns.cloudflare.com",
+            "ipv4": null,
+            "ipv6": null
+        },
+        {
+            "name": "dave.ns.cloudflare.com",
+            "ipv4": null,
+            "ipv6": null
+        }
+    ]
+}

@@ -46,6 +46,16 @@ RSpec.describe Mappers::WhoisRecord, :aggregate_failures do
     expect(subject.call).to include_json(response("org"))
   end
 
+  it "parses cdnperfcom" do
+    stub_with("cdnperfcom")
+    expect(subject.call).to include_json(response("cdnperfcom"))
+  end
+
+  it "parses ip" do
+    stub_with("ip")
+    expect(subject.call).to include_json(response("ip"))
+  end
+
   it "parses not_found" do
     stub_with("not_found")
     expect(subject.call).to include_json(response("not_found"))
