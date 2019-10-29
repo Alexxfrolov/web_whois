@@ -58,14 +58,14 @@ module Mappers
     def registrant_contacts
       [
         {
-          id: val_by_regexp(/registrant id/),
-          type: val_by_regexp(/registrant type/),
+          id: val_by_regexp(/registrant id|orgid/),
+          type: 1,
           name: val_by_regexp(/registrant name/),
           organization: val_by_regexp(/registrant org/) || val_by_regexp(/org|registrant/),
           address: val_by_regexp(/registrant address/) || val_by_regexp(/address/),
           city: val_by_regexp(/registrant city/) || val_by_regexp(/city/),
           zip: val_by_regexp(/registrant post(.*)(code|zip)|postalcode/),
-          state: val_by_regexp(/registrant state/) || val_by_regexp(/state/),
+          state: val_by_regexp(/registrant state|stateprov/),
           country: val_by_regexp(/registrant country/) || val_by_regexp(/country/),
           country_code: val_by_regexp(/registrant country_code/) || val_by_regexp(/country_code|countrycode/),
           phone: val_by_regexp(/registrant phone/) || val_by_regexp(/phone/),
@@ -82,7 +82,7 @@ module Mappers
       [
         {
           id: val_by_regexp(/admin id/),
-          type: val_by_regexp(/admin type/),
+          type: 2,
           name: val_by_regexp(/admin name/),
           organization: val_by_regexp(/admin org/),
           address: val_by_regexp(/admin address/),
@@ -105,13 +105,13 @@ module Mappers
       [
         {
           id: val_by_regexp(/tech id/),
-          type: val_by_regexp(/tech type/),
+          type: 3,
           name: val_by_regexp(/tech name/),
           organization: val_by_regexp(/tech org/) || val_by_regexp(/org|registrant/),
           address: val_by_regexp(/tech address/) || val_by_regexp(/address/),
           city: val_by_regexp(/tech city/) || val_by_regexp(/city/),
           zip: val_by_regexp(/tech post(.*)(code|zip)|postalcode/),
-          state: val_by_regexp(/tech state/) || val_by_regexp(/state/),
+          state: val_by_regexp(/tech state|stateprov/),
           country: val_by_regexp(/tech country/) || val_by_regexp(/country/),
           country_code: val_by_regexp(/tech country_code/) || val_by_regexp(/country_code|countrycode/),
           phone: val_by_regexp(/tech phone/) || val_by_regexp(/phone/),
@@ -125,7 +125,7 @@ module Mappers
     end
 
     def nameservers
-      Array(val_by_regexp(/server/)&.split(/server|\n/)).select { |i| i.match?(/ns\d\./) }.map do |item|
+      Array(val_by_regexp(/server/)&.split(/server|\n/)).select { |i| i.match?(/ns\./) }.map do |item|
         item.gsub!(/: /, "")
         name, ip4, ip6 = item.squish.split(" ")
         {
