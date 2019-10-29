@@ -3,11 +3,21 @@
 module Services
   # used to get report from whois service
   class QueryReporter
+    RETRIES = 3
+
     include Import["whois"]
     include Import["mappers.wrap_response"]
 
     def call(query)
-      do_response(query)
+      retries ||= 0
+
+      status, data = do_response(query)
+      while [408, 503].include?(status) && retries < RETRIES
+        status, data = do_response(query)
+        retries += 1
+      end
+
+      [status, data]
     end
 
     private
@@ -20,6 +30,8 @@ module Services
       [400, wrap_response.call(nil)]
     rescue Whois::ServerNotFound
       [400, wrap_response.call(nil)]
+    rescue Timeout::Error
+      [408, wrap_response.call(nil)]
     rescue Whois::ConnectionError
       [503, wrap_response.call(nil)]
     rescue StandardError
