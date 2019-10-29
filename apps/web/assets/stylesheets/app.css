@@ -759,12 +759,22 @@ template {
   line-height: 2;
   color: rgba(255, 255, 255, .45);
   background-color: #32344b;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(49, 51, 74, 0)), to(#32344b)), url('/images/page_background.svg');
-  background-image: -o-linear-gradient(top, rgba(49, 51, 74, 0), #32344b), url('/images/page_background.svg');
-  background-image: linear-gradient(to bottom, rgba(49, 51, 74, 0), #32344b), url('/images/page_background.svg');
-  background-repeat: no-repeat;
-  background-position: 115.5% -7%;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(49, 51, 74, 0)), to(#32344b));
+  background-image: -o-linear-gradient(top, rgba(49, 51, 74, 0), #32344b);
+  background-image: linear-gradient(to bottom, rgba(49, 51, 74, 0), #32344b);
   -webkit-font-smoothing: antialiased;
+}
+
+.page::before {
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  top: -125px;
+  width: 658px;
+  height: 100%;
+  content: '';
+  background-image: url('/images/page_background.svg');
+  background-repeat: no-repeat;
 }
 
   .page__content {
@@ -923,13 +933,16 @@ template {
       -webkit-flex-basis: 11.25rem;
           -ms-flex-preferred-size: 11.25rem;
               flex-basis: 11.25rem;
-      -webkit-box-flex: 0;
-      -webkit-flex-grow: 0;
-          -ms-flex-positive: 0;
-              flex-grow: 0;
-      -webkit-flex-shrink: 0;
-          -ms-flex-negative: 0;
-              flex-shrink: 0;
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+          -ms-flex-positive: 1;
+              flex-grow: 1;
+      -webkit-flex-shrink: 1;
+          -ms-flex-negative: 1;
+              flex-shrink: 1;
+      white-space: normal;
+      word-spacing: normal;
+      word-break: break-word;
     }
   .tabs__tablist {
     padding: 0 2.5rem;
@@ -973,6 +986,9 @@ template {
     background-image: linear-gradient(251deg, #484b60, #414459);
     -webkit-border-radius: .25rem;
             border-radius: .25rem;
+  }
+  .tabs .column {
+    flex: 1 1 0;
   }
   .tabs .column:first-child {
     padding-right: 3.125rem;
