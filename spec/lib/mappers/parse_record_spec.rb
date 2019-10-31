@@ -26,10 +26,10 @@ RSpec.describe Mappers::ParseRecord, :aggregate_failures do
     )
     expect(parser.registrant_contacts).to include(
       id: "REDACTED FOR PRIVACY",
-      type: nil,
+      type: 1,
       name: "REDACTED FOR PRIVACY",
       organization: "Privacy protection service - whoisproxy.ru",
-      address: nil,
+      address: "REDACTED FOR PRIVACY",
       city: "REDACTED FOR PRIVACY",
       zip: "REDACTED FOR PRIVACY",
       state: "Moscow",
@@ -44,10 +44,10 @@ RSpec.describe Mappers::ParseRecord, :aggregate_failures do
     )
     expect(parser.admin_contacts).to include(
       id: "REDACTED FOR PRIVACY",
-      type: nil,
+      type: 2,
       name: "REDACTED FOR PRIVACY",
       organization: "REDACTED FOR PRIVACY",
-      address: nil,
+      address: "REDACTED FOR PRIVACY",
       city: "REDACTED FOR PRIVACY",
       zip: "REDACTED FOR PRIVACY",
       state: "REDACTED FOR PRIVACY",
@@ -62,10 +62,10 @@ RSpec.describe Mappers::ParseRecord, :aggregate_failures do
     )
     expect(parser.technical_contacts).to include(
       id: "REDACTED FOR PRIVACY",
-      type: nil,
+      type: 3,
       name: "REDACTED FOR PRIVACY",
       organization: "REDACTED FOR PRIVACY",
-      address: nil,
+      address: "REDACTED FOR PRIVACY",
       city: "REDACTED FOR PRIVACY",
       zip: "REDACTED FOR PRIVACY",
       state: "REDACTED FOR PRIVACY",

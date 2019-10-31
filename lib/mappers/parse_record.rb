@@ -62,7 +62,7 @@ module Mappers
           type: 1,
           name: val_by_regexp(/registrant name/),
           organization: val_by_regexp(/registrant org/) || val_by_regexp(/org|registrant/),
-          address: val_by_regexp(/registrant address/) || val_by_regexp(/address/),
+          address: val_by_regexp(/registrant address|registrant street/) || val_by_regexp(/address|street/),
           city: val_by_regexp(/registrant city/) || val_by_regexp(/city/),
           zip: val_by_regexp(/registrant post(.*)(code|zip)|postalcode/),
           state: val_by_regexp(/registrant state|stateprov/),
@@ -85,7 +85,7 @@ module Mappers
           type: 2,
           name: val_by_regexp(/admin name/),
           organization: val_by_regexp(/admin org/),
-          address: val_by_regexp(/admin address/),
+          address: val_by_regexp(/admin address|admin street/),
           city: val_by_regexp(/admin city/),
           zip: val_by_regexp(/admin post(.*)(code|zip)/),
           state: val_by_regexp(/admin state/),
@@ -106,9 +106,9 @@ module Mappers
         {
           id: val_by_regexp(/tech id/),
           type: 3,
-          name: val_by_regexp(/tech name/),
+          name: val_by_regexp(/tech name|techname/),
           organization: val_by_regexp(/tech org/) || val_by_regexp(/org|registrant/),
-          address: val_by_regexp(/tech address/) || val_by_regexp(/address/),
+          address: val_by_regexp(/tech address|tech street/) || val_by_regexp(/address|street/),
           city: val_by_regexp(/tech city/) || val_by_regexp(/city/),
           zip: val_by_regexp(/tech post(.*)(code|zip)|postalcode/),
           state: val_by_regexp(/tech state|stateprov/),
@@ -140,6 +140,8 @@ module Mappers
 
     def set_record!
       @record ||= {}
+      return unless @raw_text.present?
+
       keys = @raw_text.scan(/^[a-zA-Z -\/\\]+:/).reject { |i| i.match?(/http/) }
       keys.each_cons(2) do |first, second|
         key = first&.squish&.downcase

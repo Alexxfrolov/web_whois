@@ -12,7 +12,7 @@
   "registrant_contacts": [
     {
       "id": null,
-      "type": null,
+      "type": 1,
       "name": null,
       "organization": "",
       "address": null,

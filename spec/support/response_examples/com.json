@@ -17,10 +17,10 @@
   "registrant_contacts": [
     {
       "id": "Not Available From Registry",
-      "type": null,
+      "type": 1,
       "name": "Domain Admin / This Domain is For Sale",
       "organization": "HugeDomains.com",
-      "address": null,
+      "address": "2635 Walnut Street",
       "city": "Denver",
       "zip": "80205",
       "state": "CO",
@@ -37,10 +37,10 @@
   "admin_contacts": [
     {
       "id": "Not Available From Registry",
-      "type": null,
+      "type": 2,
       "name": "Domain Admin / This Domain is For Sale",
       "organization": "HugeDomains.com",
-      "address": null,
+      "address": "2635 Walnut Street",
       "city": "Denver",
       "zip": "80205",
       "state": "CO",
@@ -57,10 +57,10 @@
   "technical_contacts": [
     {
       "id": "Not Available From Registry",
-      "type": null,
+      "type": 3,
       "name": "Domain Admin / This Domain is For Sale",
       "organization": "HugeDomains.com",
-      "address": null,
+      "address": "2635 Walnut Street",
       "city": "Denver",
       "zip": "80205",
       "state": "CO",

@@ -17,7 +17,7 @@
   "registrant_contacts": [
     {
       "id": null,
-      "type": null,
+      "type": 1,
       "name": null,
       "organization": "WhoisGuard, Inc.",
       "address": null,
@@ -37,7 +37,7 @@
   "admin_contacts": [
     {
       "id": null,
-      "type": null,
+      "type": 2,
       "name": null,
       "organization": null,
       "address": null,
@@ -57,14 +57,14 @@
   "technical_contacts": [
     {
       "id": null,
-      "type": null,
+      "type": 3,
       "name": null,
-      "organization": null,
+      "organization": "WhoisGuard, Inc.",
       "address": null,
       "city": null,
       "zip": null,
       "state": null,
-      "country": null,
+      "country": "PA",
       "country_code": null,
       "phone": "+1.6613102107",
       "fax": null,
