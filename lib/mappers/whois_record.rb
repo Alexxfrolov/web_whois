@@ -15,7 +15,7 @@ module Mappers
     def call
       {
         disclaimer: disclaimer,
-        domain: domain.to_s.downcase,
+        domain: domain&.downcase,
         domain_id: domain_id,
         status: status,
         available: available?,
@@ -35,14 +35,17 @@ module Mappers
     private
 
     def disclaimer
+      return nil if available?
       get_value(:disclaimer)
     end
 
     def domain
+      return nil if available?
       get_value(:domain)
     end
 
     def domain_id
+      return nil if available?
       get_value(:domain_id)
     end
 
@@ -51,7 +54,7 @@ module Mappers
     end
 
     def available?
-      get_value(:available?)
+      @available ||= get_value(:available?)
     end
 
     def registered?
@@ -71,20 +74,24 @@ module Mappers
     end
 
     def registrar
+      return nil if available?
       parser_respond_to?(:registrar) ? @parser.registrar.to_h : @record_parser.registrar
     end
 
     def registrant_contacts
+      return [] if available?
       parser_respond_to?(:registrant_contact) && @parser.registrant_contacts.present ? @parser.registrant_contacts.map(&:to_h) :
         @record_parser.registrant_contacts
     end
 
     def admin_contacts
+      return [] if available?
       parser_respond_to?(:admin_contacts) && @parser.admin_contacts.present? ? @parser.admin_contacts.map(&:to_h) :
         @record_parser.admin_contacts
     end
 
     def technical_contacts
+      return [] if available?
       parser_respond_to?(:technical_contacts) && @parser.technical_contacts.present? ? @parser.technical_contacts.map(&:to_h) :
         @record_parser.technical_contacts
     end

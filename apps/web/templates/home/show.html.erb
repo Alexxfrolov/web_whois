@@ -38,10 +38,13 @@
             <div class="column">
               <ul class="list-table">
                 <p class="list-table__title">REGISTRATION INFORMATION:</p>
-                <li class="list-table__item">
-                  <div class="list-table__item-title">Name:</div>
-                  <div class="list-table__item-text"><%= registrant[:name].to_s %></div>
-                </li>
+                <% if registrant[:name].present? %>
+                  <li class="list-table__item">
+                    <div class="list-table__item-title">Name:</div>
+                    <div class="list-table__item-text"><%= registrant[:name] %></div>
+                  </li>
+                <% end %>
+
                 <li class="list-table__item">
                   <div class="list-table__item-title">Organization:</div>
                   <div class="list-table__item-text"><%= registrant[:organization].to_s %></div>
@@ -63,10 +66,12 @@
             <div class="column">
               <ul class="list-table">
                 <p class="list-table__title">TECH CONTACT:</p>
-                <li class="list-table__item">
-                  <div class="list-table__item-title">Name:</div>
-                  <div class="list-table__item-text"><%= tech_contacts[:name] %></div>
-                </li>
+                <% if tech_contacts[:name].present? %>
+                  <li class="list-table__item">
+                    <div class="list-table__item-title">Name:</div>
+                    <div class="list-table__item-text"><%= tech_contacts[:name] %></div>
+                  </li>
+                <% end %>
                 <li class="list-table__item">
                   <div class="list-table__item-title">Organization:</div>
                   <div class="list-table__item-text"><%= tech_contacts[:organization] %></div>
@@ -119,7 +124,6 @@
         <div class="column">
           <ul class="list-table">
             <p class="list-table__title">NS</p>
-            <li class="list-table__item"><%= registrant[:organization] %></li>
             <% nameservers.map do |server| %>
               <li class="list-table__item"><%= server[:name] %></li>
             <% end %>
