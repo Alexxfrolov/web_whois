@@ -775,6 +775,8 @@ template {
   content: '';
   background-image: url('/images/page_background.svg');
   background-repeat: no-repeat;
+  -webkit-filter: opacity(.75);
+  filter: opacity(.75);
 }
 
   .page__content {
@@ -812,6 +814,9 @@ template {
     display: -ms-flexbox;
     display: flex;
   }
+.result__dates .result-date:first-child {
+  padding-left: 0;
+}
   .result__table {
     padding-top: 2.5rem;
   }
@@ -825,6 +830,7 @@ template {
       padding-left: 3.125rem;
     }
   .result__tabs {
+    margin: 0 -2.5rem;
     padding-top: 2.5rem;
   }
   .result-date {
