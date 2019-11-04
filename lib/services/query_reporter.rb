@@ -11,7 +11,7 @@ module Services
     def call(query)
       retries ||= 0
 
-      query = query.to_s.squish.gsub(/www.|https?:\/\//, "")
+      query = query.to_s.squish.gsub(/\/|www.|https?:\/\//, "")
       status, data = do_response(query)
       while [408, 503].include?(status) && retries < RETRIES
         status, data = do_response(query)

@@ -5,9 +5,11 @@ module Web
         include Web::Action
         include Import["services.query_reporter"]
         expose :result
+        expose :query
 
         def call(params)
-          _, @result = query_reporter.call(params[:request])
+          @query = params[:request] || request.path
+          _, @result = query_reporter.call(@query)
 
           if @result
             @result = JSON.parse(@result)["data"].map(&:deep_symbolize_keys!)
