@@ -13,7 +13,7 @@ module Web
         end
 
         def title
-          query.split(";").last
+          params[:request]
         end
 
         def created_on

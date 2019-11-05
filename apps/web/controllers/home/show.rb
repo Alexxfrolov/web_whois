@@ -8,8 +8,7 @@ module Web
         expose :query
 
         def call(params)
-          @query = params[:request] || request.path
-          _, @result = query_reporter.call(@query)
+          _, @result = query_reporter.call(params[:request])
 
           if @result
             @result = JSON.parse(@result)["data"].map(&:deep_symbolize_keys!)
