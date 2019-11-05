@@ -24,6 +24,10 @@ module Services
 
     private
 
+    def expire_time
+      ENV["REDIS_EXPIRE"] || 10800
+    end
+
     def cached_response(query)
       data = redis.get(query)
       return unless data
@@ -36,7 +40,7 @@ module Services
 
     def cache_response!(query, data)
       redis.set(query, data)
-      redis.expire(query, 10800)
+      redis.expire(query, expire_time)
     rescue
       puts "ERROR WHILE CACHING DATA!!!"
     end
