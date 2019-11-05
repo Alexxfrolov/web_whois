@@ -6,7 +6,7 @@ module Web
 
         case type
         when "smartphone", "feature phone", "tablet"
-          redirect_to "/mobile/", status: 301
+          redirect_to "/mobile/#{params[:request]}", status: 301
         when "console", nil then redirect_to "/#{params[:request]}/json", status: 301
         end
       end
