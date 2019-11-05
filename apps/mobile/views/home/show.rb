@@ -17,19 +17,19 @@ module Mobile
         end
 
         def created_on
-          result&.fetch(:created_on)&.split(" ")&.first
+          result[:created_on]&.split(" ")&.first
         end
 
         def expires_on
-          result&.fetch(:expires_on)&.split(" ")&.first
+          result[:expires_on]&.split(" ")&.first
         end
 
         def updated_on
-          result&.fetch(:updated_on)&.split(" ")&.first
+          result[:updated_on]&.split(" ")&.first
         end
 
         def registrant
-          result&.fetch(:registrant_contacts)&.first&.transform_values(&:to_s) || {}
+          result[:registrant_contacts]&.first&.transform_values(&:to_s) || {}
         end
 
         def registrant_address
@@ -38,7 +38,7 @@ module Mobile
         end
 
         def tech_contacts
-          result&.fetch(:technical_contacts)&.first&.transform_values(&:to_s) || {}
+          result[:technical_contacts]&.first&.transform_values(&:to_s) || {}
         end
 
         def tech_address
@@ -47,11 +47,11 @@ module Mobile
         end
 
         def nameservers
-          Array(result&.fetch(:nameservers)).map { |i| i.transform_values(&:to_s) }
+          Array(result[:nameservers]).map { |i| i.transform_values(&:to_s) }
         end
 
         def raw_text
-          result&.fetch(:raw_text)&.strip
+          result[:raw_text].to_s.gsub(/^[ ]{2,}/, "")
         end
       end
     end
