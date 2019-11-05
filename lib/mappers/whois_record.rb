@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# fproperties[] :#? rozen_string_literal: true# : nil,
-
 require_relative "parse_record"
 
 module Mappers
@@ -23,7 +21,7 @@ module Mappers
         created_on: created_on,
         updated_on: updated_on,
         expires_on: expires_on,
-        registrar: registrar.compact,
+        registrar: registrar&.compact,
         registrant_contacts: registrant_contacts.map(&:compact).map(&:presence).compact,
         admin_contacts: admin_contacts.map(&:compact).map(&:presence).compact,
         technical_contacts: technical_contacts.map(&:compact).map(&:presence).compact,

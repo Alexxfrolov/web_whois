@@ -1,56 +1,33 @@
 {
-    "disclaimer": null,
-    "domain": null,
-    "domain_id": null,
     "status": "registered",
     "available": false,
     "registered": true,
     "created_on": "1992-12-01",
     "updated_on": "2018-04-23",
-    "expires_on": null,
     "registrant_contacts": [
         {
             "id": "LPL-141",
             "type": 1,
-            "name": null,
             "organization": "Level 3 Parent, LLC (LPL-141)",
             "address": "100 CenturyLink Drive",
             "city": "Monroe",
             "zip": "71203",
             "state": "LA",
             "country": "US",
-            "country_code": null,
             "phone": "+1-877-453-8353",
-            "fax": null,
             "email": "ipaddressing@level3.com",
-            "url": "https://rdap.arin.net/registry/ip/8.0.0.0",
-            "created_on": null,
-            "updated_on": null
+            "url": "https://rdap.arin.net/registry/ip/8.0.0.0"
         }
     ],
     "admin_contacts": [
         {
-            "id": null,
             "type": 2,
-            "name": null,
-            "organization": null,
-            "address": null,
-            "city": null,
-            "zip": null,
-            "state": null,
-            "country": null,
-            "country_code": null,
             "phone": "+1-877-453-8353",
-            "fax": null,
-            "email": "ipaddressing@level3.com",
-            "url": null,
-            "created_on": null,
-            "updated_on": null
+            "email": "ipaddressing@level3.com"
         }
     ],
     "technical_contacts": [
         {
-            "id": null,
             "type": 3,
             "name": "ipaddressing",
             "organization": "Level 3 Parent, LLC (LPL-141)",
@@ -59,13 +36,8 @@
             "zip": "71203",
             "state": "LA",
             "country": "US",
-            "country_code": null,
             "phone": "+1-877-453-8353",
-            "fax": null,
-            "email": "ipaddressing@level3.com",
-            "url": null,
-            "created_on": null,
-            "updated_on": null
+            "email": "ipaddressing@level3.com"
         }
     ],
     "nameservers": []

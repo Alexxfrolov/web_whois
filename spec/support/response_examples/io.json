@@ -1,5 +1,4 @@
 {
-  "disclaimer": null,
   "domain": "meduza.io",
   "domain_id": "D503300000040364358-LRMS",
   "status": "registered",
@@ -16,62 +15,28 @@
   },
   "registrant_contacts": [
     {
-      "id": null,
       "type": 1,
-      "name": null,
       "organization": "WhoisGuard, Inc.",
-      "address": null,
-      "city": null,
-      "zip": null,
       "state": "Panama",
       "country": "PA",
-      "country_code": null,
       "phone": "+1.6613102107",
-      "fax": null,
-      "email": "abuse@namecheap.com",
-      "url": null,
-      "created_on": null,
-      "updated_on": null
+      "email": "abuse@namecheap.com"
     }
   ],
   "admin_contacts": [
     {
-      "id": null,
       "type": 2,
-      "name": null,
-      "organization": null,
-      "address": null,
-      "city": null,
-      "zip": null,
-      "state": null,
-      "country": null,
-      "country_code": null,
       "phone": "+1.6613102107",
-      "fax": null,
-      "email": "abuse@namecheap.com",
-      "url": null,
-      "created_on": null,
-      "updated_on": null
+      "email": "abuse@namecheap.com"
     }
   ],
   "technical_contacts": [
     {
-      "id": null,
       "type": 3,
-      "name": null,
       "organization": "WhoisGuard, Inc.",
-      "address": null,
-      "city": null,
-      "zip": null,
-      "state": null,
       "country": "PA",
-      "country_code": null,
       "phone": "+1.6613102107",
-      "fax": null,
-      "email": "abuse@namecheap.com",
-      "url": null,
-      "created_on": null,
-      "updated_on": null
+      "email": "abuse@namecheap.com"
     }
   ]
 }

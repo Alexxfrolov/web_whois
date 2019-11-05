@@ -1,5 +1,4 @@
 {
-  "disclaimer": null,
   "domain": "xco.news",
   "domain_id": "f9b7895db33c453c8e372fc0ebd9cca5-DONUTS",
   "status": "registered",
@@ -25,13 +24,9 @@
       "zip": "REDACTED FOR PRIVACY",
       "state": "Moscow",
       "country": "RU",
-      "country_code": null,
       "phone": "REDACTED FOR PRIVACY",
       "fax": "REDACTED FOR PRIVACY",
-      "email": "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name.",
-      "url": null,
-      "created_on": null,
-      "updated_on": null
+      "email": "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
     }
   ],
   "admin_contacts": [
@@ -45,13 +40,9 @@
       "zip": "REDACTED FOR PRIVACY",
       "state": "REDACTED FOR PRIVACY",
       "country": "REDACTED FOR PRIVACY",
-      "country_code": null,
       "phone": "REDACTED FOR PRIVACY",
       "fax": "REDACTED FOR PRIVACY",
-      "email": "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name.",
-      "url": null,
-      "created_on": null,
-      "updated_on": null
+      "email": "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
     }
   ],
   "technical_contacts": [
@@ -65,13 +56,9 @@
       "zip": "REDACTED FOR PRIVACY",
       "state": "REDACTED FOR PRIVACY",
       "country": "REDACTED FOR PRIVACY",
-      "country_code": null,
       "phone": "REDACTED FOR PRIVACY",
       "fax": "REDACTED FOR PRIVACY",
-      "email": "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name.",
-      "url": null,
-      "created_on": null,
-      "updated_on": null
+      "email": "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
     }
   ]
 }

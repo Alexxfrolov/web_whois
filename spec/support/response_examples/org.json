@@ -1,5 +1,4 @@
 {
-  "disclaimer": null,
   "domain": "ruby-doc.org",
   "domain_id": "D90393870-LROR",
   "status": "registered",
@@ -11,22 +10,12 @@
   "registrar": {},
   "registrant_contacts": [
     {
-      "id": null,
       "type": 1,
-      "name": null,
       "organization": "",
-      "address": null,
-      "city": null,
-      "zip": null,
       "state": "AZ",
       "country": "US",
-      "country_code": null,
       "phone": "+1.6613102107",
-      "fax": null,
-      "email": "abuse@namecheap.com",
-      "url": null,
-      "created_on": null,
-      "updated_on": null
+      "email": "abuse@namecheap.com"
     }
   ],
   "admin_contacts": [],

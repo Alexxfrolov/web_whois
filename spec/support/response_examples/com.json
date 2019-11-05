@@ -1,5 +1,4 @@
 {
-  "disclaimer": null,
   "domain": "jsdelivery.com",
   "domain_id": "2111408762_DOMAIN_COM-VRSN",
   "status": "registered",
@@ -25,13 +24,9 @@
       "zip": "80205",
       "state": "CO",
       "country": "US",
-      "country_code": null,
       "phone": "+1.3038930552",
       "fax": "",
-      "email": "domains@hugedomains.com",
-      "url": null,
-      "created_on": null,
-      "updated_on": null
+      "email": "domains@hugedomains.com"
     }
   ],
   "admin_contacts": [
@@ -45,13 +40,9 @@
       "zip": "80205",
       "state": "CO",
       "country": "US",
-      "country_code": null,
       "phone": "+1.3038930552",
       "fax": "",
-      "email": "domains@hugedomains.com",
-      "url": null,
-      "created_on": null,
-      "updated_on": null
+      "email": "domains@hugedomains.com"
     }
   ],
   "technical_contacts": [
@@ -65,13 +56,9 @@
       "zip": "80205",
       "state": "CO",
       "country": "US",
-      "country_code": null,
       "phone": "+1.3038930552",
       "fax": "",
-      "email": "domains@hugedomains.com",
-      "url": null,
-      "created_on": null,
-      "updated_on": null
+      "email": "domains@hugedomains.com"
     }
   ]
 }
