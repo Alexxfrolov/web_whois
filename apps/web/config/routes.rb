@@ -7,14 +7,9 @@
 json_endpoint = ->(env) { Api::Controllers::V1::Whois.new.call(query: env["router.params"][:request]) }
 
 get "/", to: "home#index"
-get "/http:/:/:request/json", to: json_endpoint
-get "/https:/:/:request/json", to: json_endpoint
+get "/http:/:/:request/json/*", to: json_endpoint
 get "/https:/:/:request/json/*", to: json_endpoint
-get "/http:/:/:request", to: "home#show"
-get "/https:/:/:request", to: "home#show"
+get "/:request/json/*", to: json_endpoint
 get "/http:/:/:request/*", to: "home#show"
 get "/https:/:/:request/*", to: "home#show"
-get "/:request", to: "home#show"
 get "/:request/*", to: "home#show"
-get "/:request/json", to: json_endpoint
-get "/:request/json/*", to: json_endpoint

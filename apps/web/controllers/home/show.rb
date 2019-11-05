@@ -11,7 +11,7 @@ module Web
           _, @result = query_reporter.call(params[:request])
 
           if @result
-            @result = JSON.parse(@result)["data"].map(&:deep_symbolize_keys!)
+            @result = JSON.parse(@result)["whois_record"]&.deep_symbolize_keys!
           else
             []
           end

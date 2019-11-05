@@ -6,8 +6,18 @@ module Mappers
     def call(response)
       {
         meta: { created_at: Time.now },
-        data: Array(response&.parser&.parsers).map { |parser| WhoisRecord.new(parser).call }
+        whois_record:
+          merge(Array(response&.parser&.parsers).map { |parser| WhoisRecord.new(parser).call })
       }.to_json
+    end
+
+    private
+
+    def merge(data)
+      data.inject({}) do |new, old|
+        old.keys.each { |key| new[key] ||= old[key] }
+        new
+      end
     end
   end
 end
