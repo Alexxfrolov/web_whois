@@ -29,12 +29,15 @@ module Services
       return unless data
 
       [200, data]
+    rescue
+      puts "ERROR WHILE GETTING CACHE DATA!!!"
+      nil
     end
 
     def cache_response!(query, data)
       redis.set(query, data)
       redis.expire(query, 10800)
-    rescue StandardError
+    rescue
       puts "ERROR WHILE CACHING DATA!!!"
     end
 
