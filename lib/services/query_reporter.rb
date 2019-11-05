@@ -6,13 +6,14 @@ module Services
     RETRIES = 3
 
     include Import["whois"]
+    include Import["redis"]
     include Import["mappers.wrap_response"]
 
     def call(query)
       retries ||= 0
 
       query = query.to_s.squish.gsub(/\/|www.|https?:\/\//, "")
-      status, data = do_response(query)
+      status, data = cached_response(query) || do_response(query)
       while [408, 503].include?(status) && retries < RETRIES
         status, data = do_response(query)
         retries += 1
@@ -23,10 +24,27 @@ module Services
 
     private
 
+    def cached_response(query)
+      data = redis.get(query)
+      return unless data
+
+      [200, data]
+    end
+
+    def cache_response!(query, data)
+      redis.set(query, data)
+      redis.expire(query, 10800)
+    rescue StandardError
+      puts "ERROR WHILE CACHING DATA!!!"
+    end
+
     def do_response(query)
       data = whois.lookup(query)
+      wraped_data = wrap_response.call(data)
 
-      [200, wrap_response.call(data)]
+      cache_response!(query, wraped_data)
+
+      [200, wraped_data]
     rescue Whois::AllocationUnknown
       [400, wrap_response.call(nil)]
     rescue Whois::ServerNotFound

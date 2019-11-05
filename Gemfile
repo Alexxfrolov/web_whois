@@ -13,6 +13,9 @@ gem "rake"
 # gem 'whois', '~> 5.0'
 gem "whois-parser"
 
+# used to store cache
+gem "redis"
+
 # classify user-agent
 gem "device_detector"
 # gem 'mysql2'

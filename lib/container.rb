@@ -15,6 +15,8 @@ class Container
 
   register("whois") { Whois::Client.new(timeout: 10) }
 
+  register("redis") { Redis.new(url: ENV["REDIS_URL"], password: ENV["REDIS_PASSWORD"]) }
+
   namespace("services") do
     register("query_reporter") { Services::QueryReporter.new }
   end
