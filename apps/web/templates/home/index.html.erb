@@ -2,30 +2,32 @@
   <h1 class="heading heading--level-1">WHOIS Search Tool</h1>
 </div>
 <div class="page__description">
-  <p class="text">Powerful way to search domain name registration records. Real providing date, easy integration and formatting record as you want.</p>
+  <p class="text">Powerful way to search domain name registration records. Real providing date, easy integration and
+    formatting record as you want.</p>
 </div>
 <div class="page__form">
   <%= search_form %>
 </div>
-<a class="link link--skeep link--contained" href="#example"><img class="link--skeep__icon" src="/images/arrow_down.svg" alt="move json example">Learn more</a>
+<div class="page__skeep-link"><a class="link link--skeep link--contained" href="#example"><img class="link--skeep__icon"
+      src="/images/arrow_down.svg" alt="move json example">Learn more</a></div>
 <div class="page__advantages">
   <div class="advantages">
-    <div class="row">
-      <div class="column">
-        <div class="advantage">
-          <div class="advantage__icon"><img src="/images/advantage_1.svg" alt="Real providing data"></div>
-          <div class="advantage__title">Real providing data</div>
-          <div class="advantage__text">Get key data points for domains including Registrant name, organization, e-mail address, registration address, registrar information, creation date, expiration date, updated date, domain availability,
-            domain age, and much more.</div>
-        </div>
+    <div class="advantages__item">
+      <div class="advantage">
+        <div class="advantage__icon"><img src="/images/advantage_1.svg" alt="Real providing data"></div>
+        <div class="advantage__title">Real providing data</div>
+        <div class="advantage__text">Get key data points for domains including Registrant name, organization, e-mail
+          address, registration address, registrar information, creation date, expiration date, updated date, domain
+          availability, domain age, and much more.</div>
       </div>
-      <div class="column">
-        <div class="advantage">
-          <div class="advantage__icon"><img src="/images/advantage_2.svg" alt="Easy integration and formatting"></div>
-          <div class="advantage__title">Easy integration and formatting</div>
-          <div class="advantage__text">All the Whois information is well parsed and normalized to a consistent format for easy integration with your business processes. The query results with both parsed fields and raw texts are returned in
-            popular XML &amp; JSON format.</div>
-        </div>
+    </div>
+    <div class="advantages__item">
+      <div class="advantage">
+        <div class="advantage__icon"><img src="/images/advantage_2.svg" alt="Easy integration and formatting"></div>
+        <div class="advantage__title">Easy integration and formatting</div>
+        <div class="advantage__text">All the Whois information is well parsed and normalized to a consistent format for
+          easy integration with your business processes. The query results with both parsed fields and raw texts are
+          returned in popular XML &amp; JSON format.</div>
       </div>
     </div>
   </div>
@@ -33,7 +35,7 @@
 <div class="page__markdown" id="example">
   <div class="markdown">
     <h2 class="heading heading--level-2 heading--align-center markdown__title">JSON API Documentation</h2>
-    <div class="markdown__container">
+    <div class="markdown__box" id="markdown__box">
       <%= render partial: 'json_example' %>
     </div>
   </div>

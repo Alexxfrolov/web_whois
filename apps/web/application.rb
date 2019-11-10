@@ -247,7 +247,7 @@ module Web
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
         include Web::Controllers::Application # included in all the actions
-        before :detect_user_agent! # run an authentication before callback
+        before :redirect_requests!
       end
 
       # Configure the code that will yield each time Web::View is included

@@ -4,7 +4,17 @@
 # See: https://guides.hanamirb.org/routing/overview
 #
 
-json_endpoint = ->(env) { Api::Controllers::V1::Whois.new.call(query: env["router.params"][:request]) }
+json_endpoint = ->(env) do
+  if env["REQUEST_PATH"].match?(/(^\/(http:\/\/|www))|\/json\/?(.+)/)
+    cleaned_request = env["router.params"][:request].gsub(/^www\./, "")
+
+    [301, {"Location" => "/#{cleaned_request}/json"}, []]
+  else
+    Api::Controllers::V1::Whois.new.call(
+      query: env["router.params"][:request].gsub(/^www\./, ""))
+  end
+end
+
 
 get "/", to: "home#index"
 get "/http:/:/:request/json/*", to: json_endpoint

@@ -8,7 +8,7 @@ module Mappers
         meta: { created_at: Time.now },
         whois_record:
           merge(Array(response&.parser&.parsers).map { |parser| WhoisRecord.new(parser).call })
-      }.to_json
+      }
     end
 
     private

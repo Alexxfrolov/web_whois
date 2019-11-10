@@ -8,12 +8,14 @@ module Services
     include Import["whois"]
     include Import["redis"]
     include Import["mappers.wrap_response"]
+    include Import["services.fill_ip"]
 
     def call(query)
       retries ||= 0
 
       query = query.to_s.squish.downcase.gsub(/\/|www.|https?:\/\//, "")
       status, data = cached_response(query) || do_response(query)
+
       while [408, 503].include?(status) && retries < RETRIES
         status, data = do_response(query)
         retries += 1
@@ -29,7 +31,7 @@ module Services
     end
 
     def cached_response(query)
-      data = redis.get(query)
+      data = redis.get(query) if ENV["USE_CACHE"] == "true"
       return unless data
 
       [200, data]
@@ -39,8 +41,8 @@ module Services
     end
 
     def cache_response!(query, data)
-      redis.set(query, data)
-      redis.expire(query, expire_time)
+      redis.set(query, data) if ENV["USE_CACHE"] == "true"
+      redis.expire(query, expire_time) if ENV["USE_CACHE"] == "true"
     rescue
       puts "ERROR WHILE CACHING DATA!!!"
     end
@@ -48,10 +50,11 @@ module Services
     def do_response(query)
       data = whois.lookup(query)
       wraped_data = wrap_response.call(data)
+      full_data = fill_ip.call(wraped_data).to_json
 
-      cache_response!(query, wraped_data)
+      cache_response!(query, full_data)
 
-      [200, wraped_data]
+      [200, full_data]
     rescue Whois::AllocationUnknown
       [400, wrap_response.call(nil)]
     rescue Whois::ServerNotFound

@@ -49,11 +49,11 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
     return cache[name].exports;
 
-    function localRequire(x){
+    function localRequire(x) {
       return newRequire(localRequire.resolve(x));
     }
 
-    function resolve(x){
+    function resolve(x) {
       return modules[name][1][x] || x;
     }
   }
@@ -96,13 +96,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
     if (typeof exports === "object" && typeof module !== "undefined") {
       module.exports = mainExports;
 
-    // RequireJS
+      // RequireJS
     } else if (typeof define === "function" && define.amd) {
-     define(function () {
-       return mainExports;
-     });
+      define(function () {
+        return mainExports;
+      });
 
-    // <script>
+      // <script>
     } else if (globalName) {
       this[globalName] = mainExports;
     }
@@ -117,91 +117,116 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"kUj2":[function(require,module,exports) {
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
+})({
+  "kUj2": [function (require, module, exports) {
+    function _classCallCheck(instance, Constructor) {
+      if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+      }
+    }
 
-module.exports = _classCallCheck;
-},{}],"fgVH":[function(require,module,exports) {
-"use strict"; // class ScrollToElement {
-//   constructor(el, duration) {
-//     this.trigger = el
-//     this.duration = duration
-//     this.menuHeight = $("#js-menu").outerHeight()
-//   }
-//   init() {
-//     const { duration, menuHeight } = this
-//     this.trigger.on("click", function(e) {
-//       e.preventDefault()
-//       const dest = $(this).attr("href")
-//       $("html, body").animate(
-//         {
-//           scrollTop: $(dest).offset().top - menuHeight,
-//         },
-//         duration,
-//       )
-//     })
-//   }
-// }
+    module.exports = _classCallCheck;
+  }, {}],
+  "fgVH": [function (require, module, exports) {
+    "use strict";
 
-var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+    var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : {
+        default: obj
+      };
+    }
 
-var Tabs = function Tabs() {
-  var _this = this;
+    var Tabs = function Tabs() {
+      var _this = this;
 
-  (0, _classCallCheck2.default)(this, Tabs);
+      (0, _classCallCheck2.default)(this, Tabs);
 
-  this.checkSelected = function (tab) {
-    return tab.getAttribute("aria-selected") === "true" ? true : false;
-  };
+      this.checkSelected = function (tab) {
+        return tab.getAttribute("aria-selected") === "true" ? true : false;
+      };
 
-  this.changeTab = function (tab) {
-    var tabs = _this.tabs;
-    tabs.forEach(function (tab) {
-      tab.setAttribute("aria-selected", "false");
-    });
-    tab.setAttribute("aria-selected", "true");
-  };
+      this.changeTab = function (tab) {
+        var tabs = _this.tabs;
+        tabs.forEach(function (tab) {
+          tab.setAttribute("aria-selected", "false");
+        });
+        tab.setAttribute("aria-selected", "true");
+      };
 
-  this.changeTablist = function (tab) {
-    var tabpanels = _this.tabpanels;
-    tabpanels.forEach(function (tabpanel) {
-      tabpanel.style.display = "none";
-    });
-    var currentTabpanel = document.getElementById(tab.getAttribute("aria-controls"));
-    currentTabpanel.style.display = "block";
-  };
+      this.changeTablist = function (tab) {
+        var tabpanels = _this.tabpanels;
+        tabpanels.forEach(function (tabpanel) {
+          tabpanel.style.display = "none";
+        });
+        var currentTabpanel = document.getElementById(tab.getAttribute("aria-controls"));
+        currentTabpanel.style.display = "block";
+      };
 
-  this.init = function () {
-    var self = _this;
-    var tabs = _this.tabs,
-        tabpanels = _this.tabpanels;
-    tabs.forEach(function (tab) {
-      tab.addEventListener("click", function () {
-        var isSelected = self.checkSelected(tab);
+      this.init = function () {
+        var self = _this;
+        var tabs = _this.tabs;
+        tabs.forEach(function (tab) {
+          tab.addEventListener("click", function () {
+            var isSelected = self.checkSelected(tab);
 
-        if (isSelected) {
+            if (isSelected) {
+              return;
+            }
+
+            self.changeTab(tab);
+            self.changeTablist(tab);
+          });
+        });
+      };
+
+      this.tabs = Array.from(document.querySelectorAll(".js-tab"));
+      this.activeTab = document.querySelector("[aria-selected=true]");
+      this.tabpanels = Array.from(document.querySelectorAll("[role=tabpanel]"));
+    };
+
+    var Expand = function Expand() {
+      var _this2 = this;
+
+      (0, _classCallCheck2.default)(this, Expand);
+
+      this.init = function () {
+        var button = _this2.button,
+          target = _this2.target,
+          activeCls = _this2.activeCls;
+
+        if (!button) {
           return;
         }
 
-        self.changeTab(tab);
-        self.changeTablist(tab);
-      });
+        button.addEventListener('click', function () {
+          var expanded = target.classList.contains(activeCls);
+
+          if (expanded) {
+            target.classList.remove(activeCls);
+            return;
+          }
+
+          target.classList.add(activeCls);
+          button.style.display = 'none';
+        });
+      };
+
+      this.button = document.getElementById("js-expand");
+      this.target = this.button ? document.getElementById(this.button.dataset.target) : null;
+      this.activeCls = 'expanded';
+    };
+
+    ;
+    window.addEventListener("load", function () {
+      var tabs = new Tabs();
+      var expand = new Expand();
+      tabs.init();
+      expand.init();
     });
-  };
-
-  this.tabs = Array.from(document.querySelectorAll(".js-tab"));
-  this.activeTab = document.querySelector("[aria-selected=true]");
-  this.tabpanels = Array.from(document.querySelectorAll("[role=tabpanel]"));
-};
-
-window.addEventListener("load", function () {
-  var tabs = new Tabs();
-  tabs.init();
-});
-},{"@babel/runtime/helpers/classCallCheck":"kUj2"}]},{},["fgVH"], null)
+  }, {
+    "@babel/runtime/helpers/classCallCheck": "kUj2"
+  }]
+}, {}, ["fgVH"], null)
+//# sourceMappingURL=/app.e689f952.js.map

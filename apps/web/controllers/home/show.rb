@@ -5,7 +5,6 @@ module Web
         include Web::Action
         include Import["services.query_reporter"]
         expose :result
-        expose :query
 
         def call(params)
           _, @result = query_reporter.call(params[:request])
