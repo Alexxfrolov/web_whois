@@ -1,15 +1,12 @@
-[![Build Status](https://travis-ci.org/Alexxfrolov/web_whois.svg?branch=master)](https://travis-ci.org/Alexxfrolov/web_whois)
 # Getwhois
-
-Welcome to your new Hanami project!
+Web application for whois data
 
 ## Setup
 
-How to run tests:
+Prepare development mode:
 
-```
-% bundle exec rake
-```
+Copy `.env.sample` to `env.development` and set url for redis (used to cache data).
+Set `USE_CACHE=false` if you need to disable caching.
 
 How to run the development console:
 
@@ -23,12 +20,14 @@ How to run the development server:
 % bundle exec hanami server
 ```
 
-How to prepare (create and migrate) DB for `development` and `test` environments:
+How to run tests:
 
 ```
-% bundle exec hanami db prepare
-
-% HANAMI_ENV=test bundle exec hanami db prepare
+% bundle exec rake
 ```
+## Setup production
+All required variables are in `.env.sapmple`.
 
-Explore Hanami [guides](https://guides.hanamirb.org/), [API docs](http://docs.hanamirb.org/1.3.3/), or jump in [chat](http://chat.hanamirb.org) for help. Enjoy! 🌸
+When using heroku:
+- add redis in `Add-ons`
+- in `Settings` open `Config Vars` and set variables from sample
