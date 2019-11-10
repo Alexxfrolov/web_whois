@@ -4,10 +4,8 @@ require "hanami/setup"
 require_relative "../lib/getwhois"
 require_relative "../apps/web/application"
 require_relative "../apps/api/application"
-require_relative "../apps/mobile/application"
 
 Hanami.configure do
-  mount Mobile::Application, at: "/mobile"
   mount Api::Application, at: "/api"
   mount Web::Application, at: "/"
 
