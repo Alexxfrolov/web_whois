@@ -116,7 +116,7 @@ GEM
       pry (~> 0.10)
     puma (4.2.1)
       nio4r (~> 2.0)
-    rack (2.0.7)
+    rack (2.0.8)
     rake (13.0.0)
     redis (4.1.3)
     rspec (3.9.0)
